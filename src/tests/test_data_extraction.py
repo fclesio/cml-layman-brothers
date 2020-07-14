@@ -1,18 +1,13 @@
 import os
 import pandas as pd
-import logging
 from pandas.testing import assert_frame_equal
 
 from src.data_extraction import get_raw_from_github
 from src.data_extraction import get_y
 from src.data_extraction import get_X
 
-LOGGER = logging.getLogger(__name__)
 
-
-
-url = \
-    "https://raw.githubusercontent.com/fclesio/learning-space/master/Datasets/02%20-%20Classification/default_credit_card.csv"
+url = "https://raw.githubusercontent.com/fclesio/learning-space/master/Datasets/02%20-%20Classification/default_credit_card.csv"
 
 
 def generate_raw_df_test(url=url):
