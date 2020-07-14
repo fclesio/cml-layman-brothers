@@ -5,11 +5,16 @@ import os
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from base_logger import logger
 
-url = \
-    "https://raw.githubusercontent.com/fclesio/learning-space/master/Datasets/02%20-%20Classification/default_credit_card.csv"
+
+logger.info("[DATA-EXTRACTION]- Start data extraction")
+url = "https://raw.githubusercontent.com/fclesio/learning-space/master/Datasets/02%20-%20Classification/default_credit_card.csv"
+
+logger.info(f"[DATA-EXTRACTION]- Data URL: {url}")
 
 seed = 42
+logger.info(f"[DATA-EXTRACTION]- Random seed for data split: {seed}")
 
 dict_data_path = {
     "X_train": "data/train_features.csv",
@@ -42,18 +47,39 @@ def delete_files(filepath):
 
 
 if __name__ == "__main__":
+    logger.info(f"[DATA-EXTRACTION]- Get data from Github")
     df = get_raw_from_github(url=url)
+    logger.info(
+        f"[DATA-EXTRACTION]- Dataframe with {df.shape[0]} rows and {df.shape[1]} columns"
+    )
+
     y = get_y(df)
     X = get_X(df)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=seed)
 
+    test_size = 0.10
+    logger.info(
+        f"[DATA-EXTRACTION]- Split train and test sets. Test size with {test_size}%"
+    )
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, random_state=seed, test_size=test_size
+    )
+
+    logger.info(
+        f"[DATA-EXTRACTION]- Training set with {X_train.shape[0]} samples - Test set with {X_test.shape[0]} samples"
+    )
+
+    logger.info("[DATA-EXTRACTION]- Create folder")
     if not os.path.isdir("data"):
         os.mkdir("data")
 
     for key, value in dict_data_path.items():
         delete_files(filepath=value)
 
+    logger.info("[DATA-EXTRACTION]- Saving files in folder")
     np.savetxt(dict_data_path["X_train"], X_train)
     np.savetxt(dict_data_path["X_test"], X_test)
     np.savetxt(dict_data_path["y_train"], y_train)
     np.savetxt(dict_data_path["y_test"], y_test)
+
+
+logger.info("[DATA-EXTRACTION]- Data extraction finished")

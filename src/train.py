@@ -7,6 +7,10 @@ import matplotlib.pyplot as plt
 import json
 import os
 import numpy as np
+from base_logger import logger
+
+
+logger.info("[TRAINING]- Start training")
 
 dict_cml_objects_path = {
     "confusion_matrix": "cml_objects/confusion_matrix.png",
@@ -20,7 +24,8 @@ dict_data_path = {
     "y_test": "data/test_labels.csv",
 }
 
-depth = 7
+depth = 9
+logger.info(f"[TRAINING] - Random Forest Trees Depth: {depth}")
 
 
 def get_cml_objects_folder():
@@ -29,19 +34,22 @@ def get_cml_objects_folder():
 
 
 if __name__ == "__main__":
+    logger.info("[TRAINING] - Create CML folder")
     get_cml_objects_folder()
 
+    logger.info("[TRAINING] - Load training and test data")
     X_train = np.genfromtxt(dict_data_path["X_train"])
     y_train = np.genfromtxt(dict_data_path["y_train"])
     X_test = np.genfromtxt(dict_data_path["X_test"])
     y_test = np.genfromtxt(dict_data_path["y_test"])
 
+    logger.info("[TRAINING] - Algo training")
     clf = RandomForestClassifier(max_depth=depth)
     clf.fit(X_train, y_train)
 
     acc = clf.score(X_test, y_test)
     acc = (round(acc, 2)) * 100
-    print(f'Model Accuracy: {acc} %')
+    logger.info("[TRAINING] - Model accuracy: {acc}")
 
     with open(dict_cml_objects_path["metrics"], "w") as outfile:
         outfile.write("Accuracy: " + str(acc) + "\n")
@@ -50,3 +58,5 @@ if __name__ == "__main__":
         clf, X_test, y_test, normalize="true", cmap=plt.cm.Blues
     )
     plt.savefig(dict_cml_objects_path["confusion_matrix"])
+
+logger.info("[TRAINING]- Training finished")

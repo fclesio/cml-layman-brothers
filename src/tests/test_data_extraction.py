@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import logging
-from pandas.util.testing import assert_frame_equal
+from pandas.testing import assert_frame_equal
 
 from src.data_extraction import get_raw_from_github
 from src.data_extraction import get_y
