@@ -13,10 +13,12 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-          
-          python data_extraction.py
 
-          python train.py
+          pytest -o log_cli=true --log-cli-level=DEBUG
+          
+          python src/data_extraction.py
+
+          python src/train.py
         
           cat cml_objects/metrics.txt >> report.md
           
@@ -24,4 +26,4 @@ jobs:
           
           cml-send-comment report.md
 
-          python data_cleanup.py
+          python src/data_cleanup.py

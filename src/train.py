@@ -20,7 +20,7 @@ dict_data_path = {
     "y_test": "data/test_labels.csv",
 }
 
-depth = 15
+depth = 7
 
 
 def get_cml_objects_folder():
@@ -41,6 +41,7 @@ if __name__ == "__main__":
 
     acc = clf.score(X_test, y_test)
     acc = (round(acc, 2)) * 100
+    print(f'Model Accuracy: {acc} %')
 
     with open(dict_cml_objects_path["metrics"], "w") as outfile:
         outfile.write("Accuracy: " + str(acc) + "\n")
