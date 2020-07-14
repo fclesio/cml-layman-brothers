@@ -24,4 +24,4 @@ jobs:
           
           cml-send-comment report.md
 
-          python data_cleaup.py
+          python data_cleanup.py
