@@ -20,7 +20,7 @@ dict_data_path = {
     "y_test": "data/test_labels.csv",
 }
 
-depth = 10
+depth = 15
 
 
 def get_cml_objects_folder():
