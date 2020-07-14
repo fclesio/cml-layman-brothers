@@ -14,6 +14,8 @@ jobs:
         run: |
           pip install -r requirements.txt
           
+          python data_extraction.py
+
           python train.py
         
           cat cml_objects/metrics.txt >> report.md
@@ -21,3 +23,5 @@ jobs:
           cml-publish cml_objects/confusion_matrix.png --md >> report.md
           
           cml-send-comment report.md
+
+          python data_cleaup.py
