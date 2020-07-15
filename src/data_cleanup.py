@@ -3,7 +3,8 @@
 
 import shutil
 import os
-from base_logger import logger
+from src.logger import logger
+
 
 logger.info("[DATA-CLEANUP]- Start data folder deletion")
 

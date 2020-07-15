@@ -7,10 +7,8 @@ import matplotlib.pyplot as plt
 import json
 import os
 import numpy as np
-from base_logger import logger
+from src.logger import logger
 
-
-logger.info("[TRAINING]- Start training")
 
 dict_cml_objects_path = {
     "confusion_matrix": "cml_objects/confusion_matrix.png",
@@ -49,7 +47,7 @@ if __name__ == "__main__":
 
     acc = clf.score(X_test, y_test)
     acc = (round(acc, 2)) * 100
-    logger.info("[TRAINING] - Model accuracy: {acc}")
+    logger.info(f"[TRAINING] - Model accuracy: {acc}")
 
     with open(dict_cml_objects_path["metrics"], "w") as outfile:
         outfile.write("Accuracy: " + str(acc) + "\n")
