@@ -1,18 +1,24 @@
+#!/usr/bin/env python3.6
+# -*- coding: utf-8 -*-
+
 import os
 import pandas as pd
-import logging
-from pandas.util.testing import assert_frame_equal
+from pandas.testing import assert_frame_equal
 
-from src.data_extraction import get_raw_from_github
-from src.data_extraction import get_y
-from src.data_extraction import get_X
+import sys
+sys.path.append('./')
 
-LOGGER = logging.getLogger(__name__)
+from cml_layman_brothers.src.main.processing.data_extraction import get_raw_from_github
+from cml_layman_brothers.src.main.processing.data_extraction import get_y
+from cml_layman_brothers.src.main.processing.data_extraction import get_X
+
+# PyTest was failing for logging in all scripts due to out of context calls.
+# To solve this in a quick and dirty manner I pass directly the full path in the
+# imports and this problem is eliminated. Thanks SO [1].
+# [1] - How to import a module given the full path? - https://stackoverflow.com/a/58974141/7024760
 
 
-
-url = \
-    "https://raw.githubusercontent.com/fclesio/learning-space/master/Datasets/02%20-%20Classification/default_credit_card.csv"
+url = "https://raw.githubusercontent.com/fclesio/learning-space/master/Datasets/02%20-%20Classification/default_credit_card.csv"
 
 
 def generate_raw_df_test(url=url):
