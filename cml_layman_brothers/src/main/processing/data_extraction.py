@@ -1,13 +1,17 @@
 #!/usr/bin/env python3.6
 # -*- coding: utf-8 -*-
 
+import sys
+
+sys.path.append("./")
+
 import os
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from src.logger import logger
+from cml_layman_brothers.src.main.utils import logger
 
-
+logger = logger.setup_custom_logger("root")
 
 logger.info("[DATA-EXTRACTION]- Start data extraction")
 url = "https://raw.githubusercontent.com/fclesio/learning-space/master/Datasets/02%20-%20Classification/default_credit_card.csv"
@@ -18,10 +22,10 @@ seed = 42
 logger.info(f"[DATA-EXTRACTION]- Random seed for data split: {seed}")
 
 dict_data_path = {
-    "X_train": "data/train_features.csv",
-    "X_test": "data/test_features.csv",
-    "y_train": "data/train_labels.csv",
-    "y_test": "data/test_labels.csv",
+    "X_train": "cml_layman_brothers/data/train_features.csv",
+    "X_test": "cml_layman_brothers/data/test_features.csv",
+    "y_train": "cml_layman_brothers/data/train_labels.csv",
+    "y_test": "cml_layman_brothers/data/test_labels.csv",
 }
 
 
@@ -48,6 +52,7 @@ def delete_files(filepath):
 
 
 if __name__ == "__main__":
+
     logger.info(f"[DATA-EXTRACTION]- Get data from Github")
     df = get_raw_from_github(url=url)
     logger.info(
@@ -70,8 +75,8 @@ if __name__ == "__main__":
     )
 
     logger.info("[DATA-EXTRACTION]- Create folder")
-    if not os.path.isdir("data"):
-        os.mkdir("data")
+    if not os.path.isdir("cml_layman_brothers/data"):
+        os.mkdir("cml_layman_brothers/data")
 
     for key, value in dict_data_path.items():
         delete_files(filepath=value)
@@ -82,5 +87,4 @@ if __name__ == "__main__":
     np.savetxt(dict_data_path["y_train"], y_train)
     np.savetxt(dict_data_path["y_test"], y_test)
 
-
-logger.info("[DATA-EXTRACTION]- Data extraction finished")
+    logger.info("[DATA-EXTRACTION]- Data extraction finished")

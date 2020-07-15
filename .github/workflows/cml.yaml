@@ -14,11 +14,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-          pytest -o log_cli=true --log-cli-level=DEBUG
+          pytest cml_layman_brothers/src/test/unit_test/test_data_extraction.py -o log_cli=true --log-cli-level=INFO
           
-          python src/data_extraction.py
+          python cml_layman_brothers/src/main/processing/data_extraction.py
 
-          python src/train.py
+          python cml_layman_brothers/src/main/processing/train.py
         
           cat cml_objects/metrics.txt >> report.md
           
@@ -26,4 +26,7 @@ jobs:
           
           cml-send-comment report.md
 
-          python src/data_cleanup.py
+          python cml_layman_brothers/src/main/processing/data_cleanup.py
+
+
+
