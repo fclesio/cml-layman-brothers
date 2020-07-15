@@ -1,2 +1,2 @@
 # cml-layman-brothers
-Continuous Machine Learning for Layman Brother dataset.
+Continuous Machine Learning for Layman Brothers dataset.
