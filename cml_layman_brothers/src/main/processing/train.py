@@ -28,7 +28,7 @@ dict_data_path = {
     "y_test": "cml_layman_brothers/data/test_labels.csv",
 }
 
-depth = 25
+depth = 10
 logger.info(f"[TRAINING] - Random Forest Trees Depth: {depth}")
 
 
