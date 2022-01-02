@@ -7,7 +7,10 @@ jobs:
     runs-on: [ubuntu-latest]
     container: docker://dvcorg/cml:latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
+      - uses: actions/setup-python@v2
+          with:
+            python-version: '3.8'
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -17,18 +20,15 @@ jobs:
           python3.6 -m pytest cml_layman_brothers/src/test/unit_test/test_requirements.py -o log_cli=true --log-cli-level=INFO
 
           pytest cml_layman_brothers/src/test/unit_test/test_data_extraction.py -o log_cli=true --log-cli-level=INFO
-          
+
           python cml_layman_brothers/src/main/processing/data_extraction.py
 
           python cml_layman_brothers/src/main/processing/train.py
-        
-          cat cml_objects/metrics.txt >> report.md
-          
-          cml-publish cml_objects/confusion_matrix.png --md >> report.md
-          
+
+          cat metrics.txt >> report.md
+
+          cml-publish confusion_matrix.png --md >> report.md
+
           cml-send-comment report.md
 
           python cml_layman_brothers/src/main/processing/data_cleanup.py
-
-
-
