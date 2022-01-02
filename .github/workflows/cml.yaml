@@ -23,10 +23,6 @@ jobs:
 
           ls -la
 
-          cd ..
-
-          ls -la
-
           pip3 install -r cml_layman_brothers/requirements.txt
 
           python3 -m pytest cml_layman_brothers/src/test/unit_test/test_requirements.py -o log_cli=true --log-cli-level=INFO
