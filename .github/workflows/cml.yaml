@@ -25,7 +25,7 @@ jobs:
 
           pip3 install -r requirements.txt
 
-          python3.8 -m pytest cml_layman_brothers/src/test/unit_test/test_requirements.py -o log_cli=true --log-cli-level=INFO
+          pytest cml_layman_brothers/src/test/unit_test/test_requirements.py -o log_cli=true --log-cli-level=INFO
 
           pytest cml_layman_brothers/src/test/unit_test/test_data_extraction.py -o log_cli=true --log-cli-level=INFO
 
