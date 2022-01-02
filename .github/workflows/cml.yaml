@@ -1,4 +1,4 @@
-  name: model-training
+name: model-training
 
 on: [push]
 
@@ -9,8 +9,7 @@ jobs:
     steps:
       - uses: iterative/setup-cml@v1
       - uses: actions/setup-python@v2
-          with:
-            python-version: '3.8'
+
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
