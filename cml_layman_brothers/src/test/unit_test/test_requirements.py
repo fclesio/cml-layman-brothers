@@ -10,7 +10,7 @@ def test_requirements():
         'sklearn==0.0',
         'matplotlib==3.2.2',
         'pandas==1.0.5',
-        'numpy==1.19.0',
+        'numpy==1.22.0',
     ]
     
     pkg_resources.require(dependencies)
