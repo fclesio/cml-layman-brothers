@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
 
 sys.path.append("./")
 
 import os
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
 from cml_layman_brothers.src.main.utils import logger
 
 logger = logger.setup_custom_logger("root")
