@@ -17,7 +17,7 @@ jobs:
 
           ls -la
 
-          cd cml-layman-brothers/cml-layman-brothers
+          cd ..
 
           ls -la
 
