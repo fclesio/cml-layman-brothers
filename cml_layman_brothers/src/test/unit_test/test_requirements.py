@@ -6,7 +6,7 @@ def test_requirements():
     from pkg_resources import DistributionNotFound, VersionConflict
     
     dependencies = [
-        'setuptools==41.0.1',
+        'setuptools==45.2.0',
         'sklearn==0.0',
         'matplotlib==3.2.2',
         'pandas==1.0.5',
